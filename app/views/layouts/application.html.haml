@@ -5,7 +5,6 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-
   %body
     %h1.title Rotten Potatoes!
     #main
@@ -13,5 +12,4 @@
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
-
       = yield
