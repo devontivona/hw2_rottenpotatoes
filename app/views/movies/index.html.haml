@@ -1,12 +1,12 @@
--#  This file is app/views/movies/index.html.haml
 %h1 All Movies
-
 %table#movies
   %thead
     %tr
-      %th Movie Title
+      %th{ class: (params.has_key?(:sort) and params[:sort] == "title") ? "highlighted" : "" }
+        = link_to "Movie Title", sort: "title"
       %th Rating
-      %th Release Date
+      %th{ class: (params.has_key?(:sort) and params[:sort] == "release_date") ? "highlighted" : "" }
+        = link_to "Release Date", sort: "release_date"
       %th More Info
   %tbody
     - @movies.each do |movie|
@@ -15,5 +15,4 @@
         %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
-
 = link_to 'Add new movie', new_movie_path
