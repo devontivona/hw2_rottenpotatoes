@@ -1,12 +1,10 @@
-%h1 All Movies
 = form_tag movies_path, :method => :get do
-  Include: 
   - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag "ratings[#{rating}]", nil, @current_ratings.include?(rating)
+    %label.check-box{ class: @current_ratings.include?(rating) ? "highlighted" : nil }
+      = check_box_tag "ratings[#{rating}]", nil, @current_ratings.include?(rating)
+      = rating
   - if params.has_key?(:sort)
     = hidden_field_tag :sort, params[:sort]
-  = submit_tag 'Refresh'
 %table#movies
   %thead
     %tr
@@ -22,6 +20,6 @@
       %tr
         %td= movie.title 
         %td= movie.rating
-        %td= movie.release_date
+        %td= movie.release_date.strftime "%e %b %Y"
         %td= link_to "More about #{movie.title}", movie_path(movie)
-= link_to 'Add new movie', new_movie_path
+= link_to 'Add new movie', new_movie_path, class: "button"

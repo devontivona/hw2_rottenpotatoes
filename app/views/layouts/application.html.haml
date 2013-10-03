@@ -5,9 +5,12 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+  %script{src: "//use.typekit.net/fsx0oqu.js", type: "text/javascript"}
+  :javascript
+    try{Typekit.load();}catch(e){}
   %body
-    %h1.title Rotten Potatoes!
-    #main
+    .container
+      %h1.title We Love Movies
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
